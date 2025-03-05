@@ -1,7 +1,7 @@
 <template>
-  <div :class="['flex items-center justify-center h-screen', randomBgColor]">
-    <h1 class="text-4xl font-bold text-yellow-500">
-      {{ msg || "Hello, Tailwind CSS with Vue!" }}
+  <div class="flex items-center justify-center h-screen bg-gray-100">
+    <h1 class="text-4xl font-bold text-indigo-500">
+      {{ displayedText }}
     </h1>
   </div>
 </template>
@@ -11,25 +11,25 @@ export default {
   name: "HelloWorld",
   data() {
     return {
-      bgColors: [
-        "bg-red-200",
-        "bg-blue-200",
-        "bg-green-200",
-        "bg-purple-200",
-        "bg-yellow-200",
-      ],
-      randomBgColor: "",
+      fullText: "Hello, Tailwind CSS with Vue!",
+      displayedText: "",
+      index: 0,
     };
   },
-  props: {
-    msg: {
-      type: String,
-      default: "Hello, Tailwind CSS with Vue!",
-    },
+  mounted() {
+    this.typewriterEffect();
   },
-  created() {
-    this.randomBgColor =
-      this.bgColors[Math.floor(Math.random() * this.bgColors.length)];
+  methods: {
+    typewriterEffect() {
+      const interval = setInterval(() => {
+        if (this.index < this.fullText.length) {
+          this.displayedText += this.fullText[this.index];
+          this.index++;
+        } else {
+          clearInterval(interval);
+        }
+      }, 100);
+    },
   },
 };
 </script>
