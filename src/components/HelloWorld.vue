@@ -1,7 +1,7 @@
 <template>
   <div class="flex items-center justify-center h-screen bg-gray-100">
-    <h1 class="text-4xl font-bold text-red-600">
-      Hello, Tailwind CSS with Vue!
+    <h1 class="text-4xl font-bold text-blue-500">
+      {{ msg || "Hello, Tailwind CSS with Vue!" }}
     </h1>
   </div>
 </template>
@@ -10,7 +10,10 @@
 export default {
   name: "HelloWorld",
   props: {
-    msg: String,
+    msg: {
+      type: String,
+      default: "Hello, Tailwind CSS with Vue!",
+    },
   },
 };
 </script>
