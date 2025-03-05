@@ -1,20 +1,44 @@
 <template>
   <div
-    class="flex items-center justify-center h-screen bg-gray-100 dark:bg-gray-800"
+    :class="[
+      'flex items-center justify-center h-screen',
+      isDark ? 'bg-black' : 'bg-gray-100',
+    ]"
   >
-    <h1 class="text-4xl font-bold text-purple-500 dark:text-yellow-300">
-      {{ msg || "Hello, Tailwind CSS with Vue!" }}
-    </h1>
+    <div class="text-center">
+      <h1
+        class="text-4xl font-bold"
+        :class="isDark ? 'text-white' : 'text-blue-500'"
+      >
+        {{ msg || "Hello, Tailwind CSS with Vue!" }}
+      </h1>
+      <button
+        @click="toggleTheme"
+        class="mt-4 px-4 py-2 bg-blue-500 text-white rounded"
+      >
+        Toggle Theme
+      </button>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
   name: "HelloWorld",
+  data() {
+    return {
+      isDark: false,
+    };
+  },
   props: {
     msg: {
       type: String,
       default: "Hello, Tailwind CSS with Vue!",
+    },
+  },
+  methods: {
+    toggleTheme() {
+      this.isDark = !this.isDark;
     },
   },
 };
