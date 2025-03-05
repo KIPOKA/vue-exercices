@@ -1,24 +1,8 @@
 <template>
-  <div
-    :class="[
-      'flex items-center justify-center h-screen',
-      isDark ? 'bg-black' : 'bg-gray-100',
-    ]"
-  >
-    <div class="text-center">
-      <h1
-        class="text-4xl font-bold"
-        :class="isDark ? 'text-white' : 'text-blue-500'"
-      >
-        {{ msg || "Hello, Tailwind CSS with Vue!" }}
-      </h1>
-      <button
-        @click="toggleTheme"
-        class="mt-4 px-4 py-2 bg-blue-500 text-white rounded"
-      >
-        Toggle Theme
-      </button>
-    </div>
+  <div :class="['flex items-center justify-center h-screen', randomBgColor]">
+    <h1 class="text-4xl font-bold text-yellow-500">
+      {{ msg || "Hello, Tailwind CSS with Vue!" }}
+    </h1>
   </div>
 </template>
 
@@ -27,7 +11,14 @@ export default {
   name: "HelloWorld",
   data() {
     return {
-      isDark: false,
+      bgColors: [
+        "bg-red-200",
+        "bg-blue-200",
+        "bg-green-200",
+        "bg-purple-200",
+        "bg-yellow-200",
+      ],
+      randomBgColor: "",
     };
   },
   props: {
@@ -36,10 +27,9 @@ export default {
       default: "Hello, Tailwind CSS with Vue!",
     },
   },
-  methods: {
-    toggleTheme() {
-      this.isDark = !this.isDark;
-    },
+  created() {
+    this.randomBgColor =
+      this.bgColors[Math.floor(Math.random() * this.bgColors.length)];
   },
 };
 </script>
