@@ -1,6 +1,6 @@
 <template>
   <div class="flex items-center justify-center h-screen bg-gray-100">
-    <h1 class="text-4xl font-bold text-blue-500">
+    <h1 class="text-4xl font-bold text-green-500 animate-pulse">
       {{ msg || "Hello, Tailwind CSS with Vue!" }}
     </h1>
   </div>
